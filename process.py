@@ -11,6 +11,26 @@ import time
 
 
 
+
+
+#GUARDIAN API - USER INPUT TO URL
+def getUrlFromInput(user_input):
+	web_string = "http://content.guardianapis.com/search?q="+user_input+"&format=json"
+	req = urllib2.Request(web_string)
+	opener = urllib2.build_opener()
+	f = opener.open(req)
+	result = simplejson.load(f)
+	print (result["response"]["status"])
+
+	ret_dict = []
+	count = 0
+	for article in result["response"]["results"]:
+		entry = str(article["webUrl"])
+		ret_dict.append(entry)
+
+	return ret_dict
+
+#BEAUTIFULSOUP - URL TO TEXT
 def getTextByUrl(url):
 	page = urllib2.urlopen(url).read()
 	soup = BeautifulSoup(page)
@@ -23,24 +43,16 @@ def getTextByUrl(url):
 	return bodytext
 
 
-#GUARDIAN API - USER INPUT TO URL
+
+
+
+	
+#1. 
 user_input = "london"
-web_string = "http://content.guardianapis.com/search?q="+user_input+"&format=json"
-req = urllib2.Request(web_string)
-opener = urllib2.build_opener()
-f = opener.open(req)
-result = simplejson.load(f)
-print (result["response"]["status"])
+urls = getUrlFromInput(user_input)
+print(urls)
 
-ret_dict = []
-count = 0
-for article in result["response"]["results"]:
-    entry = str(article["webUrl"])
-    ret_dict.append(entry)
-
-print (ret_dict)
-
-#BEAUTIFULSOUP - URL TO TEXT
+#2.
 url = "http://www.guardian.co.uk/politics/2013/apr/27/ed-miliband-plans-autumn-reshuffle"
 print (getTextByUrl(url))
 
