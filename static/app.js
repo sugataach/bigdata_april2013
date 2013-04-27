@@ -35,23 +35,29 @@ function PlaceListCtrl($scope) {
   $scope.places = places;
   $scope.current_place = null;
   $scope.show_spinner = false;
+  $scope._place_details = {};
 
   $scope.fetchPlace = function(place){
-    $.ajax('/search', {
-      beforeSend: function(){
-        $scope.show_spinner = true;
-        $scope.current_place = null;
-      },
-      complete: function(){
-        $scope.show_spinner = false;
-        $scope.$apply();
-      },
-      data: {'place': place},
-      dataType: 'json',
-      success: function(response){
-        $scope.current_place = response;
-      }
-    });
+    if (place in $scope._place_details) {
+      $scope.current_place = $scope._place_details[place];
+    } else {
+      $.ajax('/search', {
+        beforeSend: function(){
+          $scope.show_spinner = true;
+          $scope.current_place = null;
+        },
+        complete: function(){
+          $scope.show_spinner = false;
+          $scope.$apply();
+        },
+        data: {'place': place},
+        dataType: 'json',
+        success: function(response){
+          $scope._place_details[place] = response;
+          $scope.current_place = response;
+        }
+      });
+    }
   }
 
 

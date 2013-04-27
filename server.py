@@ -12,7 +12,6 @@ def index():
 @app.route('/search')
 def search():
     place = request.args.get('place')
-    time.sleep(5)
     return json.dumps({'name': place})
 
 if __name__ == '__main__':
