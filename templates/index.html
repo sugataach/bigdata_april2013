@@ -3,28 +3,52 @@
 <html lang="en" ng-app>
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Burrough Browser</title>
-  <link rel="stylesheet" href="static/foundation.css">
+  <link rel="stylesheet" href="static/bootstrap.css">
+  <link rel="stylesheet" href="static/bootstrap-responsive.css">
   <link rel="stylesheet" href="static/app.css">
   <script src="static/jquery-1.9.1.js"></script>
   <script src="static/angular.js"></script>
   <script src="static/app.js"></script>
+  <script src="static/bootstrap.js"></script>
 </head>
 <body ng-controller="PlaceListCtrl">
-
-  <div class="row">
-  	<div class="small-4 columns">
-  		<input ng-model="query" id='query-input'>
-  		<ul>
-  			<li ng-repeat="place in places | filter:query">
-  				<a ng:click="fetchPlace(place.name);"> {{place.name}} </a>
-  			</li>
-  		</ul>
-  	</div>
-	  <div class="small-8 columns">
-	  	{{current_place.name}}
+	<div class="navbar navbar-inverse navbar-fixed-top">
+	  <div class="navbar-inner">
+	    <div class="container">
+	      <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	      </button>
+	      <a class="brand" href="#">Burrough Browser</a>
+	      <div class="nav-collapse collapse">
+	        <ul class="nav">
+	          <li class="active"><a href="#">Home</a></li>
+	          <li><a href="#about">About</a></li>
+	          <li><a href="#contact">Contact</a></li>
+	        </ul>
+	      </div><!--/.nav-collapse -->
+	    </div>
 	  </div>
+	</div>
+
+  <div class="container">
+    <div class="row">
+    	<div class="span4">
+    		<input ng-model="query" id='query-input'>
+    		<ul>
+    			<li ng-repeat="place in places | filter:query">
+    				<a ng:click="fetchPlace(place.name);"> {{place.name}} </a>
+    			</li>
+    		</ul>
+    	</div>
+  	  <div class="span8">
+        <img id="spinner" src="static/spinner_96.gif" ng-show="show_spinner"  />
+  	  	{{current_place.name}}
+  	  </div>
+    </div>
   </div>
 
 </body>

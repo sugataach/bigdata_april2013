@@ -40,6 +40,7 @@ function PlaceListCtrl($scope) {
     $.ajax('/search', {
       beforeSend: function(){
         $scope.show_spinner = true;
+        $scope.current_place = null;
       },
       complete: function(){
         $scope.show_spinner = false;
