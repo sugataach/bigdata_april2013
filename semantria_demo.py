@@ -16,7 +16,7 @@ initialTexts = [
     "In Lake Louise - a guided walk for the family with Great Divide Nature Tours  rent a canoe on Lake Louise or Moraine Lake  go for a hike to the Lake Agnes Tea House. In between Lake Louise and Banff - visit Marble Canyon or Johnson Canyon or both for family friendly short walks. In Banff  a picnic at Johnson Lake  rent a boat at Lake Minnewanka  hike up Tunnel Mountain  walk to the Bow Falls and the Fairmont Banff Springs Hotel  visit the Banff Park Museum. The \"must-do\" in Banff is a visit to the Banff Gondola and some time spent on Banff Avenue - think candy shops and ice cream.",
     "On this day in 1786 - In New York City  commercial ice cream was manufactured for the first time."
 ]
-
+initialTexts2 = [u'Society daily 25.04.13 | Society | guardian.co.uk Turn autoplay off Turn autoplay on Please activate cookies in order to turn autoplay off Jump to content [s] Jump to site navigation [0] Jump to search [4] Terms and conditions [8] Edition: UK US Your activity Email subscriptions Account details Linked services Profile Mobile About us About us Contact us Press office Guardian Print Centre Guardian readers\' editor Observer readers\' editor Terms of service Privacy policy Advertising guide Digital archive Digital edition Guardian Weekly Buy Guardian and Observer photos Today\'s']
 
 def onRequest(sender, result):
     print("\n", "REQUEST: ", result)

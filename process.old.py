@@ -21,5 +21,6 @@ for p in body.findAll(text=True):
 	bodytext += str(p)
 
 print bodytext
+print url
 
 #print bodytext
