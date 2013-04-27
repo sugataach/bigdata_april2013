@@ -10,10 +10,20 @@
   <script src="static/angular.js"></script>
   <script src="static/app.js"></script>
 </head>
-<body>
+<body ng-controller="PlaceListCtrl">
 
   <div class="row">
-  	<div class="large-12 columns"></div>
+  	<div class="large-4 columns">
+  		<input ng-model="query">
+  		<ul>
+  			<li ng-repeat="place in places | filter:query">
+  				<a ng:click="fetchPlace(place.name);"> {{place.name}} </a>
+  			</li>
+  		</ul>
+  	</div>
+	  <div class="large-8 columns">
+	  	{{current_place.name}}
+	  </div>
   </div>
 
 </body>

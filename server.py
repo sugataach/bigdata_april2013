@@ -1,15 +1,17 @@
 from flask import Flask, render_template, request
+import json
 
 app = Flask(__name__)
 
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return open('templates/index.html').read()
 
-@app.route('/search', methods=['POST'])
+@app.route('/search')
 def search():
-	pass
+    place = request.args.get('place')
+    return json.dumps({'name': place})
 
 if __name__ == '__main__':
     app.run()
