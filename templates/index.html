@@ -46,7 +46,13 @@
     	</div>
   	  <div class="span8">
         <img id="spinner" src="static/spinner_96.gif" ng-show="show_spinner"  />
-  	  	{{current_place.name}}
+  	  	<div ng-repeat="article in current_place | orderBy:2" >
+          <a href="{{article.0}}">article</a><br>
+          <h1> {{article.1}} | {{article.3.0}} </h1>
+          <h2>{{article.3.1}} </h2>
+          <hr />
+         </div>
+
   	  </div>
     </div>
   </div>

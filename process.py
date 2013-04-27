@@ -61,7 +61,7 @@ def getThemeByText(listofBodyText):
         status = session.queueDocument(doc)
         # Check status from Semantria service
         if status == 202:
-            print("\"", doc["id"], "\" document queued successfully.", "\r\n")
+            pass
 
 
     length = len(initialTexts)
@@ -69,7 +69,7 @@ def getThemeByText(listofBodyText):
 
 
     while len(results) < length:
-        print("Retrieving your processed results...", "\r\n")
+
         # As Semantria isn't real-time solution you need to wait some time before getting of the processed results
         # In real application here can be implemented two separate jobs, one for queuing of source data
         # another one for retreiving
@@ -88,12 +88,12 @@ def getThemeByText(listofBodyText):
     for data in results:
         curTheme = []
         # Printing of document sentiment score
-        print("Document sentiment polarity", data["sentiment_polarity"],"\r\n")
+
         curTheme.append(data["sentiment_polarity"])
         # Printing of document themes
         if "themes" in data:
             for theme in data["themes"]:
-                print(" ", theme["title"], " (sentiment: ", theme["sentiment_score"], ")", "\r\n")
+
                 curTheme.append(theme["title"])
                 break
         listofTheme.append(curTheme)
@@ -104,10 +104,12 @@ def getThemeByText(listofBodyText):
 
 #BEAUTIFULSOUP - URL TO TEXT
 def getTextByUrl(url):
-	page = urllib2.urlopen(url).read()
-	soup = BeautifulSoup(page)
-	soup.prettify()
-	body = soup.find("div",{"id":"article-body-blocks"})
+    page = urllib2.urlopen(url).read()
+    soup = BeautifulSoup(page)
+    soup.prettify()
+    body = soup.find("div",{"id":"article-body-blocks"})
+    if body == None:
+        return 0
 
 	bodytext = ""
 	for p in body.findAll(text=True):
@@ -141,35 +143,20 @@ def getUrlFromInput(user_input):
         #ret_dict[key] = value
 
         bodytext = getTextByUrl(url);
-        print("APPENDING",bodytext);
+        if bodytext == 0:
+            continue
+
         listofBodyText.append(bodytext)
 
-    print ("DONE LIST OF BODY TEXT")
+
     theme = getThemeByText(listofBodyText)
-    print ("GOT THE THEMESE", theme)
+
 
 
     for i in range(count):
         ret_dict[i].append(theme[i])
 
-    print ("FINAL RETURN VALUE", ret_dict)
     return ret_dict
-
-#1. 
-user_input = "brighton"
-ret_dict = getUrlFromInput(user_input)
-print ("FINAL RETURN", ret_dict)
-#print(urls)
-
-#2.
-#url = "http://www.guardian.co.uk/politics/2013/apr/27/ed-miliband-plans-autumn-reshuffle"
-#text = getTextByUrl(url)
-#print (text)
-
-
-
-
-#print(getThemeByText(text))
 
 
 
