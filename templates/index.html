@@ -3,7 +3,8 @@
 <html lang="en" ng-app>
 <head>
   <meta charset="utf-8">
-  <title>My HTML File</title>
+  <meta name="viewport" content="width=device-width" />
+  <title>Burrough Browser</title>
   <link rel="stylesheet" href="static/foundation.css">
   <link rel="stylesheet" href="static/app.css">
   <script src="static/jquery-1.9.1.js"></script>
@@ -13,7 +14,7 @@
 <body ng-controller="PlaceListCtrl">
 
   <div class="row">
-  	<div class="large-4 columns">
+  	<div class="small-4 columns">
   		<input ng-model="query">
   		<ul>
   			<li ng-repeat="place in places | filter:query">
@@ -21,7 +22,7 @@
   			</li>
   		</ul>
   	</div>
-	  <div class="large-8 columns">
+	  <div class="small-8 columns">
 	  	{{current_place.name}}
 	  </div>
   </div>
