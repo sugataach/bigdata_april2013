@@ -15,7 +15,7 @@
 
   <div class="row">
   	<div class="small-4 columns">
-  		<input ng-model="query">
+  		<input ng-model="query" id='query-input'>
   		<ul>
   			<li ng-repeat="place in places | filter:query">
   				<a ng:click="fetchPlace(place.name);"> {{place.name}} </a>
